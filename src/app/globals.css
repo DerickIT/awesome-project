@@ -179,11 +179,32 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
+    background-image:
+      radial-gradient(circle at top right, oklch(0.8 0.1 250 / 0.05), transparent 40%),
+      radial-gradient(circle at bottom left, oklch(0.8 0.1 340 / 0.05), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight text-balance;
   }
 }
 
@@ -191,11 +212,29 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  @keyframes grid {
+    0% {
+      transform: translateY(-50%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-grid {
+    animation: grid 15s linear infinite;
   }
 }

@@ -68,27 +68,31 @@ export default function Home() {
 
   return (
     <motion.div
-      className="container mx-auto max-w-7xl px-3 sm:px-4 py-4 sm:py-8"
+      className="min-h-screen bg-background"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5 }}
     >
-      <Hero />
+      <div className="container mx-auto max-w-7xl px-4 py-8 pointer-events-none absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
 
-      <motion.div
-        className="my-8 sm:my-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 2.5 }}
-      >
-        <ItemList
-          key={filteredItems.length}
-          items={filteredItems}
-          categories={categories}
-        />
-      </motion.div>
+      <div className="container mx-auto max-w-7xl px-4 py-8">
+        <Hero />
 
-      <SubmitCTA />
+        <motion.div
+          className="my-12 sm:my-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.5 }}
+        >
+          <ItemList
+            key={filteredItems.length}
+            items={filteredItems}
+            categories={categories}
+          />
+        </motion.div>
+
+        <SubmitCTA />
+      </div>
     </motion.div>
   );
 }

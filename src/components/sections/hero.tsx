@@ -1,135 +1,45 @@
 "use client";
 
-import { motion } from "motion/react";
-
-// Orchestrates the entire hero section animation
-const heroContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      // Stagger the logo and the text block
-      staggerChildren: 2.0,
-    },
-  },
-};
-
-// Animation for the logo: starts large and lower, scales down and moves up
-const logoVariants = {
-  hidden: {
-    opacity: 0,
-    scale: 3,
-    y: 100,
-    x: 0,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    x: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 60,
-      damping: 25,
-      mass: 1,
-      duration: 1.5,
-    },
-  },
-};
-
-// Orchestrates the animation for the block of text elements
-const textContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      // Stagger each line of text
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-// Standard animation for individual text elements
-const textItemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
+import { motion, useMotionTemplate, useMotionValue } from "motion/react";
+import WordPullUp from "@/components/magicui/word-pull-up";
+import RetroGrid from "@/components/magicui/retro-grid";
 
 export default function Hero() {
   return (
-    <motion.div
-      className="flex flex-col items-center justify-center space-y-4 text-center"
-      variants={heroContainerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Logo animates in first */}
-      <motion.div variants={logoVariants}>
-        <img
-          src="/logo.svg"
-          alt="awesome-shadcn/ui logo"
-          className="max-h-36"
-        />
-      </motion.div>
+    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
+      <div className="z-10 flex flex-col items-center gap-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            src="/logo.svg"
+            alt="awesome-shadcn/ui logo"
+            className="h-24 w-24 sm:h-32 sm:w-32"
+          />
+        </motion.div>
 
-      {/* Text content animates in as a group after the logo */}
-      <motion.div className="space-y-2" variants={textContainerVariants}>
-        <motion.h1
-          className="text-4xl font-bold tracking-tighter sm:text-5xl"
-          variants={textItemVariants}
-        >
-          awesome-shadcn/ui
-        </motion.h1>
+        <WordPullUp
+          className="text-4xl font-bold tracking-tighter sm:text-6xl md:text-7xl"
+          words="Awesome Projects"
+        />
+
         <motion.p
-          className="max-w-[900px] text-muted-foreground mb-4"
-          variants={textItemVariants}
+          className="max-w-[600px] text-center text-muted-foreground sm:text-xl px-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
         >
-          A curated list of awesome things related to{" "}
-          <a
-            href="https://ui.shadcn.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            shadcn/ui
-          </a>
+          A curated showcase of vibecoding projects and experiments.
+          <br />
+          <span className="text-sm italic opacity-70">
+            Showcasing creativity through code.
+          </span>
         </motion.p>
-        <motion.p
-          className="text-sm text-muted-foreground"
-          variants={textItemVariants}
-        >
-          Created by:{" "}
-          <a
-            href="https://birobirobiro.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            birobirobiro.dev
-          </a>
-        </motion.p>
-        <motion.p
-          className="text-xs text-muted-foreground"
-          variants={textItemVariants}
-        >
-          Site by:{" "}
-          <a
-            href="https://bankkroll.xyz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            bankkroll.xyz
-          </a>
-        </motion.p>
-      </motion.div>
-    </motion.div>
+      </div>
+
+      <RetroGrid />
+    </div>
   );
 }
