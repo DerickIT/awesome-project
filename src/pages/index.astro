@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
       <div class="container">
         <div class="hero-content">
           <h1 class="hero-title">
-            Hi, I'm <span class="gradient-text">Your Name</span>
+            Hi, I'm <span class="gradient-text">Derick</span>
           </h1>
           <p class="hero-description">
             Full-stack developer passionate about building elegant solutions with modern technologies.
@@ -22,14 +22,15 @@ import Footer from '../components/Footer.astro';
           </p>
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- Projects Section -->
-    <BentoGrid />
+    <!-- Projects Section - Added ID for navigation -->
+    <section id="projects" class="py-12">
+      <BentoGrid />
+    </section>
   </main>
   
   <Footer />
@@ -60,7 +61,9 @@ import Footer from '../components/Footer.astro';
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, var(--color-teal-deep) 0%, var(--color-sage-muted) 100%);
+    /* Fixed: Used valid variables. Added a fallback color just in case */
+    color: var(--color-teal-deep); 
+    background: linear-gradient(135deg, var(--color-teal-deep) 0%, var(--color-teal-light) 60%, var(--color-gold-muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -102,18 +105,7 @@ import Footer from '../components/Footer.astro';
     box-shadow: 0 8px 16px rgba(13, 148, 136, 0.2);
   }
   
-  .btn-secondary {
-    background: transparent;
-    color: var(--color-slate-dark);
-    border: 2px solid var(--color-slate-dark);
-  }
-  
-  .btn-secondary:hover {
-    background: var(--color-slate-dark);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(44, 62, 80, 0.2);
-  }
+  /* Primary button only, simplified CSS as secondary was removed */
   
   /* Mobile Responsive */
   @media (max-width: 768px) {
@@ -129,9 +121,9 @@ import Footer from '../components/Footer.astro';
       font-size: 1.125rem;
     }
     
+    /* Simplified CTA for mobile */
     .hero-cta {
-      flex-direction: column;
-      align-items: center;
+      width: 100%;
     }
     
     .btn {
