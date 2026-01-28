@@ -2,36 +2,58 @@
 
 /* Custom CSS Variables for Design System */
 :root {
-  /* Color Palette - Professional 2026 Trends */
-  --color-slate-dark: #2c3e50;
-  --color-charcoal-blue: #34495e;
-  --color-teal-deep: #0d9488;
-  --color-sand-warm: #f5f1e8;
-  --color-gray-soft: #bdc3c7;
-  --color-cream-light: #fdfbf7;
-  --color-sage-muted: #84a98c;
-  --color-terracotta: #c97064;
-  
+  /* Color Palette - Premium Neo-Minimalism 2026 */
+
+  /* Primary Darks - Deeper, richer charcoal */
+  --color-slate-dark: #0f172a;
+  /* Slate 900 - Main Text */
+  --color-charcoal-blue: #334155;
+  /* Slate 700 - Secondary Text */
+
+  /* Accents - Sophisticated & Trustworthy */
+  --color-teal-deep: #0f766e;
+  /* Teal 700 - Primary Brand */
+  --color-teal-light: #14b8a6;
+  /* Teal 500 - Hover States */
+  --color-gold-muted: #b45309;
+  /* Amber 700 - Subtle Highlights */
+
+  /* Neutrals - Warm & Atmospheric */
+  --color-sand-warm: #fafaf9;
+  /* Stone 50 - Main Background (Lighter/Cleaner) */
+  --color-sand-dark: #f5f5f4;
+  /* Stone 100 - Secondary BG */
+  --color-gray-soft: #e7e5e4;
+  /* Stone 200 - Borders */
+
+  /* Cards */
+  --color-cream-light: rgba(255, 255, 255, 0.7);
+  /* Translucent White */
+
   /* Typography */
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
-  /* Spacing */
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Unified font for cleanliness */
+
+  /* Spacing - Relaxed */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  
-  /* Border Radius */
-  --radius-sm: 0.5rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  
+  --spacing-md: 2rem;
+  /* Increased for breathability */
+  --spacing-lg: 3rem;
+  /* Increased */
+  --spacing-xl: 5rem;
+  /* Increased for grand headers */
+
+  /* Border Radius - Modern Smooth */
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+
   /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-base: 250ms ease-in-out;
-  --transition-slow: 350ms ease-in-out;
+  --transition-fast: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Base Styles */
@@ -45,61 +67,80 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11", "ss01";
+  /* Modern font features */
 }
 
 body {
   font-family: var(--font-body);
   background-color: var(--color-sand-warm);
   color: var(--color-slate-dark);
-  line-height: 1.6;
+  line-height: 1.7;
+  /* Increased line-height for readability */
+  letter-spacing: -0.01em;
+  /* Tighter modern tracking */
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  /* Tighter headings */
 }
 
 /* Utility Classes */
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1400px;
+  /* Wider container for "Atmospheric" feel */
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
 
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(250, 250, 249, 0.85);
+  /* Matches sand-warm */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(231, 229, 228, 0.5);
+  /* Stone 200 */
 }
 
 /* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
+    filter: blur(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 .animate-fade-in {
-  animation: fadeIn var(--transition-base) ease-out;
+  animation: fadeIn var(--transition-slow) ease-out forwards;
 }
 
 /* Focus Styles for Accessibility */
 *:focus-visible {
   outline: 2px solid var(--color-teal-deep);
-  outline-offset: 2px;
+  outline-offset: 4px;
 }
 
 /* Mobile Responsive Typography */
 @media (max-width: 768px) {
   html {
-    font-size: 14px;
+    font-size: 15px;
+    /* Slightly larger base on mobile */
   }
 }
