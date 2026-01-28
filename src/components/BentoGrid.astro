@@ -1,0 +1,93 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<section id="projects" class="bento-grid-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-description">
+        A collection of my recent work and side projects
+      </p>
+    </div>
+    
+    <!-- Bento Grid -->
+    <div class="bento-grid">
+      {projects.map(project => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bento-grid-section {
+    padding: var(--spacing-xl) 0;
+    min-height: 100vh;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-slate-dark);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .section-description {
+    font-size: 1.25rem;
+    color: var(--color-charcoal-blue);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    animation: fadeIn 0.8s ease-out 0.2s both;
+  }
+  
+  /* Desktop: 2-column grid for better Bento layout */
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(250px, auto);
+    }
+  }
+  
+  /* Large screens: maintain 2-column for optimal layout */
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(280px, auto);
+    }
+    
+    .section-title {
+      font-size: 3.5rem;
+    }
+  }
+  
+  /* Mobile: single column */
+  @media (max-width: 767px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-sm);
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .section-description {
+      font-size: 1rem;
+    }
+  }
+</style>
